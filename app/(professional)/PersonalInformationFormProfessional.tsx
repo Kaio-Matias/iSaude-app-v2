@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { View, Text, SafeAreaView, Pressable, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
-import { Input } from "../../../components/ui/Input";
-import { Button } from "../../../components/ui/Button";
-import { BackHeader } from "../../../components/ui/BackHeader";
+import { Input } from "../../components/ui/Input";
+import { Button } from "../../components/ui/Button";
+import { BackHeader } from "../../components/ui/BackHeader";
 import { Feather, Mail, User, Phone, IdCard, ChevronRight, ArrowRight } from "lucide-react-native";
-import Stepper from "../../../components/ui/Stepper";
-import { Link } from "../../../components/ui/Link";
+import Stepper from "../../components/ui/Stepper";
+import { Link } from "../../components/ui/Link";
 import { useNavigation } from "@react-navigation/native";
-import { ConfirmSmsCodeModal } from '../../../components/modals/ConfirmSmsCodeModal';
-import { SucessVerificationModal } from '../../../components/modals/SucessVerificationModal';
+import { ConfirmSmsCodeModal } from '../../components/modals/ConfirmSmsCodeModal';
+import { SucessVerificationModal } from '../../components/modals/SucessVerificationModal';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export default function PersonalInformationFormProfessional(props) {
+export default function PersonalInformationFormProfessional(props: any) {
   const [nome, setNome] = useState("");
   const [cpf, setCpf] = useState("");
   const [email, setEmail] = useState("");
@@ -20,7 +20,7 @@ export default function PersonalInformationFormProfessional(props) {
   const [showModal, setShowModal] = useState(false);
   const [verified, setVerified] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
 
   const isValid = nome.trim() && cpf.trim() && email.trim() && telefone.trim();
@@ -31,11 +31,11 @@ export default function PersonalInformationFormProfessional(props) {
       setShowModal(true);
       return;
     }
-    navigation.navigate("BasicInformationFormProfessional");
+    navigation.navigate("BasicInformationFormProfessional" as never);
   };
 
   // Função para formatar CPF
-  function formatCpf(value) {
+  function formatCpf(value: string) {
     const cleaned = value.replace(/\D/g, "").slice(0, 11);
     let formatted = cleaned;
     if (cleaned.length > 9) formatted = cleaned.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
@@ -45,7 +45,7 @@ export default function PersonalInformationFormProfessional(props) {
   }
 
   // Função para formatar telefone
-  function formatarTelefone(valor) {
+  function formatarTelefone(valor: string) {
     const numeros = valor.replace(/\D/g, "");
     if (numeros.length === 11) {
       return numeros.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
@@ -88,7 +88,7 @@ export default function PersonalInformationFormProfessional(props) {
                 className="m-0 p-0"
                 icon={<IdCard size={18} color="#A0AEC0" />}
                 value={cpf}
-                onChangeText={text => setCpf(formatCpf(text))}
+                onChangeText={(text: string) => setCpf(formatCpf(text))}
               />
               <Link
                 onPress={() => {
@@ -112,15 +112,15 @@ export default function PersonalInformationFormProfessional(props) {
               placeholder="(00) 00000-0000"
               icon={<Phone size={18} color="#A0AEC0" />}
               value={formatarTelefone(telefone)}
-              onChangeText={v => setTelefone(v.replace(/\D/g, "").slice(0, 11))}
+              onChangeText={(v: string) => setTelefone(v.replace(/\D/g, "").slice(0, 11))}
             />
           </View>
           <View style={{ paddingHorizontal: 24, paddingVertical: 24, paddingBottom: Platform.OS === 'android' ? 40 : 24 }}>
             <Text className="text-sm mb-4">
               Ao continuar você concorda com nossos{" "}
-              <Link inline variant="black" className="font-semibold" onPress={() => navigation.navigate('Terms')}>Termos de Uso</Link>
+              <Link inline variant="black" className="font-semibold" onPress={() => navigation.navigate('Terms' as never)}>Termos de Uso</Link>
               {" "}e{" "}
-              <Link inline variant="black" className="font-semibold" onPress={() => navigation.navigate('Polity')}>Política de Privacidade</Link>
+              <Link inline variant="black" className="font-semibold" onPress={() => navigation.navigate('Polity' as never)}>Política de Privacidade</Link>
               .
             </Text>
           </View>

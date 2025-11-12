@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image, ScrollView, Platform } from "react-native";
 import { ArrowLeft, ArrowRight } from "lucide-react-native";
 import { NavigationProp } from "../types/navigation";
-import { BackHeader } from "components/ui/BackHeader";
+import { BackHeader } from "../components/ui/BackHeader";
 import { Button } from "../components/ui/Button";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 

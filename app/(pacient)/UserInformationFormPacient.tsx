@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import { ArrowRight } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
-import { BackHeader } from "../../../components/ui/BackHeader";
-import Stepper from "../../../components/ui/Stepper";
-import { Input } from "../../../components/ui/Input";
-import { Label } from "../../../components/ui/Label";
-import { Button } from "../../../components/ui/Button";
+import { BackHeader } from "../../components/ui/BackHeader";
+import Stepper from "../../components/ui/Stepper";
+import { Input } from "../../components/ui/Input";
+import { Button } from "../../components/ui/Button";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const SUGESTOES = [
@@ -16,8 +15,8 @@ const SUGESTOES = [
   "maria.souza"
 ];
 
-export default function UserInformationFormPacient(props) {
-  const navigation = useNavigation();
+export default function UserInformationFormPacient(props: any) {
+  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
   const [username, setUsername] = useState("");
   const [inputFocused, setInputFocused] = useState(false);
@@ -60,7 +59,6 @@ export default function UserInformationFormPacient(props) {
               className="text-base text-gray-800"
               onFocus={() => setInputFocused(true)}
               onBlur={() => setInputFocused(false)}
-              active={inputFocused}
             />
             <Text className="text-black text-xs mb-1 text-left">Alguns nomes disponíveis</Text>
             <View className="mb-4 px-6">

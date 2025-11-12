@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
-import { Building, Hospital, Stethoscope, ArrowRight } from 'lucide-react-native';
-import Stepper from '../../../components/ui/Stepper';
-import Select from '../../../components/ui/Select';
-import { Input } from '../../../components/ui/Input';
-import { Button } from '../../../components/ui/Button';
-import { BackHeader } from '../../../components/ui/BackHeader';
+import { View, Text, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { Building, Hospital } from 'lucide-react-native';
+import Stepper from '../../components/ui/Stepper';
+import Select from '../../components/ui/Select';
+import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/Button';
+import { BackHeader } from '../../components/ui/BackHeader';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ArrowRight } from 'lucide-react-native';
 
 const TIPOS_UNIDADE = [
   'Clínica Médica',
@@ -17,7 +18,7 @@ const TIPOS_UNIDADE = [
   'Outro'
 ];
 
-export default function InstitutionalInformationFormClinic({ navigation }) {
+export default function InstitutionalInformationFormClinic({ navigation }: { navigation: any }) {
   const [cnpj, setCnpj] = useState('');
   const [nomeFantasia, setNomeFantasia] = useState('');
   const [tipoUnidade, setTipoUnidade] = useState('Clínica Médica');
@@ -25,7 +26,7 @@ export default function InstitutionalInformationFormClinic({ navigation }) {
 
   const isValid = cnpj.trim() && nomeFantasia.trim();
 
-  const formatCNPJ = (text) => {
+  const formatCNPJ = (text: string) => {
     // Remove todos os caracteres não numéricos
     const numbers = text.replace(/\D/g, '');
     
@@ -43,7 +44,7 @@ export default function InstitutionalInformationFormClinic({ navigation }) {
     }
   };
 
-  const handleCNPJChange = (text) => {
+  const handleCNPJChange = (text: string) => {
     const formatted = formatCNPJ(text);
     setCnpj(formatted);
   };

@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import { KeyRound, ArrowRight } from "lucide-react-native";
-import { Input } from "../../../components/ui/Input";
-import { Button } from "../../../components/ui/Button";
-import { BackHeader } from "../../../components/ui/BackHeader";
-import Stepper from "../../../components/ui/Stepper";
-import { ErrorBanner } from "../../../components/ui/ErrorBanner";
+import { Input } from "../../components/ui/Input";
+import { Button } from "../../components/ui/Button";
+import { BackHeader } from "../../components/ui/BackHeader";
+import Stepper from "../../components/ui/Stepper";
+import { ErrorBanner } from "../../components/ui/ErrorBanner";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export default function PasswordInformationFormPacient(props) {
+export default function PasswordInformationFormPacient(props: any) {
   const [senha, setSenha] = useState("");
   const [confirmar, setConfirmar] = useState("");
   const [erro, setErro] = useState("");
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
 
   // Critérios de senha
@@ -26,7 +26,7 @@ export default function PasswordInformationFormPacient(props) {
   const allCriteriaMet = criteria.every(c => c.valid);
 
   // Força da senha: 0 = fraca, 1 = média, 2 = forte
-  const getPasswordStrength = (password) => {
+  const getPasswordStrength = (password: string) => {
     let score = 0;
     if (password.length >= 8) score++;
     if (/[A-Z]/.test(password)) score++;
@@ -40,7 +40,7 @@ export default function PasswordInformationFormPacient(props) {
   const strength = getPasswordStrength(senha);
   const strengthLabels = ["Fraca", "Média", "Forte"];
   // Cores: fraca = vermelha, média = laranja, forte = verde
-  const getBarColor = (barIndex) => {
+  const getBarColor = (barIndex: number) => {
     if (strength === 2) return '#10b981'; // forte: todas verdes
     if (strength === 1) return barIndex < 2 ? '#f59e42' : '#e5e7eb'; // média: duas laranjas
     if (strength === 0) return barIndex === 0 ? '#ef4444' : '#e5e7eb'; // fraca: só a primeira vermelha

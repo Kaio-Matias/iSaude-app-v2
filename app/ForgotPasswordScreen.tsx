@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Text, View, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
-import { Input } from "../../components/ui/Input";
-import { Button } from "../../components/ui/Button";
+import { Input } from "../components/ui/Input";
+import { Button } from "../components/ui/Button";
 import { Phone, ArrowRight } from "lucide-react-native";
-import { Link } from "../../components/ui/Link";
-import { BackHeader } from "../../components/ui/BackHeader";
-import type { NavigationProp } from '../../types/navigation';
-import { ConfirmSmsCodeModal } from "../../components/modals/ConfirmSmsCodeModal";
-import { ErrorBanner } from "../../components/ui/ErrorBanner";
+import { Link } from "../components/ui/Link";
+import { BackHeader } from "../components/ui/BackHeader";
+import type { NavigationProp } from '../types/navigation';
+import { ConfirmSmsCodeModal } from "../components/modals/ConfirmSmsCodeModal";
+import { ErrorBanner } from "../components/ui/ErrorBanner";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function ForgotPasswordScreen({ navigation }: { navigation: NavigationProp }) {
@@ -52,7 +52,7 @@ export default function ForgotPasswordScreen({ navigation }: { navigation: Navig
               label="Número de Telefone"
               placeholder="(00) 00000-0000"
               value={formatPhone(phone)}
-              onChangeText={text => setPhone(text.replace(/\D/g, "").slice(0,11))}
+              onChangeText={(text: string) => setPhone(text.replace(/\D/g, "").slice(0,11))}
               icon={<Phone size={18} color="#A0AEC0" />}
               keyboardType="phone-pad"
             />
@@ -62,7 +62,7 @@ export default function ForgotPasswordScreen({ navigation }: { navigation: Navig
               Continuar
             </Button>
             <View style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-              <Link className="mt-4 text-center text-blue-600" onPress={() => navigation.navigate('Home')}>
+              <Link className="mt-4 text-center text-blue-600" onPress={() => navigation.navigate('Home' as never)}>
                 Não tenho acesso ao Email ou Telefone
               </Link>
             </View>
@@ -72,9 +72,9 @@ export default function ForgotPasswordScreen({ navigation }: { navigation: Navig
       <ConfirmSmsCodeModal
         visible={smsModalVisible}
         onClose={() => setSmsModalVisible(false)}
-        onVerify={(code) => {
+        onVerify={(code: string) => {
           setSmsModalVisible(false);
-          navigation.navigate('NovaSenha');
+          navigation.navigate('NovaSenha' as never);
         }}
         onResend={() => {}}
         phoneEnding={phone.slice(-4)}

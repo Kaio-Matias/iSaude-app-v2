@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View, Text, Image, Animated } from 'react-native';
+import React, { useRef, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationProp } from '@react-navigation/native';
 
 import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
 
 const DOTS = 4;
 const DOT_COLORS = [
@@ -14,12 +16,12 @@ const DOT_COLORS = [
 const DOT_SIZE = 14;
 
 const SplashScreen = () => {
-  const navigation = useNavigation<NavigationProp>();
+  const navigation = useNavigation<NavigationProp<any>>();
   const anims = Array.from({ length: DOTS }).map(() => useRef(new Animated.Value(0)).current);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate("Home");
+      navigation.navigate("Home" as never);
     }, 2000);
     anims.forEach((anim, i) => {
       const animate = () => {

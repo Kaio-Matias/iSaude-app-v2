@@ -9,7 +9,7 @@ interface BackHeaderProps {
 }
 
 export const BackHeader: React.FC<BackHeaderProps> = ({ title, onBackPress, hideBackIcon }) => {
-  const navigation = useRouter();
+  const router = useRouter();
   return (
     <View className="flex-row items-center px-6 pt-8 pb-2">
       {!hideBackIcon ? (

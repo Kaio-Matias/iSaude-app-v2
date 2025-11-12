@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, ScrollView, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Button } from '../../components/ui/Button';
-import { BackHeader } from '../../components/ui/BackHeader';
+import { Button } from '../components/ui/Button';
+import { BackHeader } from '../components/ui/BackHeader';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function Polity() {

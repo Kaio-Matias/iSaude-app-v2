@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Linking, ScrollView, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
-import Stepper from '../../../components/ui/Stepper';
-import Select from '../../../components/ui/Select';
-import { Input } from '../../../components/ui/Input';
-import { Button } from '../../../components/ui/Button';
-import { BackHeader } from '../../../components/ui/BackHeader';
+import Stepper from '../../components/ui/Stepper';
+import Select from '../../components/ui/Select';
+import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/Button';
+import { BackHeader } from '../../components/ui/BackHeader';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { ArrowRight, IdCard } from 'lucide-react-native';
@@ -47,7 +47,7 @@ const ESPECIALIDADES_NUTRI = [
 
 const ESPECIALIDADES_OUTRO = ['Outro'];
 
-const REGISTRO_LABELS = {
+const REGISTRO_LABELS: { [key: string]: string } = {
   'Médico': 'Conselho Regional de Medicina (CRM)',
   'Enfermeiro': 'Conselho Regional de Enfermagem (COREN)',
   'Psicólogo': 'Conselho Regional de Psicologia (CRP)',
@@ -55,7 +55,7 @@ const REGISTRO_LABELS = {
   'Outro': 'Número de Registro Profissional',
 };
 
-function getEspecialidades(area) {
+function getEspecialidades(area: string) {
   switch (area) {
     case 'Médico':
       return ESPECIALIDADES_MEDICAS;
@@ -70,19 +70,19 @@ function getEspecialidades(area) {
   }
 }
 
-export default function ProfessionalInformationFormProfessional(props) {
+export default function ProfessionalInformationFormProfessional(props: any) {
   const [area, setArea] = useState('Médico');
   const [registro, setRegistro] = useState('');
   const [estado, setEstado] = useState('Pará');
   const [especialidade, setEspecialidade] = useState('');
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
 
   const isValid = registro.trim().length > 0 && especialidade.trim().length > 0;
 
   const handleNext = () => {
     if (props.onConfirm) props.onConfirm();
-    navigation.navigate('UserInformationFormProfessional');
+    navigation.navigate('UserInformationFormProfessional' as never);
   };
 
   return (

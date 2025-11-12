@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView, SafeAreaView, KeyboardAvoidingView, Platform } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { BackHeader } from "../../../components/ui/BackHeader";
-import Stepper from "../../../components/ui/Stepper";
-import { Input } from "../../../components/ui/Input";
-import { Label } from "../../../components/ui/Label";
-import { Button } from "../../../components/ui/Button";
+import { BackHeader } from "../../components/ui/BackHeader";
+import Stepper from "../../components/ui/Stepper";
+import { Input } from "../../components/ui/Input";
+import { Label } from "../../components/ui/Label";
+import { Button } from "../../components/ui/Button";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArrowRight } from "lucide-react-native";
 
@@ -17,8 +17,8 @@ const SUGESTOES = [
   "maria.souza"
 ];
 
-export default function UserInformationFormProfessional(props) {
-  const navigation = useNavigation();
+export default function UserInformationFormProfessional(props: any) {
+  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
   const [username, setUsername] = useState("");
   const [inputFocused, setInputFocused] = useState(false);
@@ -28,7 +28,7 @@ export default function UserInformationFormProfessional(props) {
   const handleNext = () => {
     if (!isValid) return;
     if (props.onConfirm) props.onConfirm(username);
-    navigation.navigate("PasswordInformationFormProfessional");
+    navigation.navigate("PasswordInformationFormProfessional" as never);
   };
 
   return (
@@ -63,7 +63,6 @@ export default function UserInformationFormProfessional(props) {
               className="text-base text-gray-800"
               onFocus={() => setInputFocused(true)}
               onBlur={() => setInputFocused(false)}
-              active={inputFocused}
             />
             <Text className="text-black text-xs mb-1 text-left">Alguns nomes disponíveis</Text>
           </View>

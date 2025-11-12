@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import { View, Text, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
-import { BackHeader } from "../../../components/ui/BackHeader";
-import Stepper from "../../../components/ui/Stepper";
-import { Button } from "../../../components/ui/Button";
-import Select from "../../../components/ui/Select";
-import DateInput from "../../../components/ui/DateInput";
+import { View, Text, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
+import { BackHeader } from "../../components/ui/BackHeader";
+import Stepper from "../../components/ui/Stepper";
+import { Button } from "../../components/ui/Button";
+import Select from "../../components/ui/Select";
+import DateInput from "../../components/ui/DateInput";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowRight } from "lucide-react-native";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const options = ["Masculino", "Feminino", "Outro", "Prefiro não dizer"];
 
-export default function BasicInformationFormClinic(props) {
+export default function BasicInformationFormClinic(props: any) {
   const [selectedOption, setSelectedOption] = useState("Masculino");
   const [birthDate, setBirthDate] = useState("");
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
 
   const isValid = selectedOption && birthDate.trim();

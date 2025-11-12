@@ -1,14 +1,14 @@
 import React from "react";
 import { View, Text, Image, ScrollView } from "react-native";
-import { Button } from "../../../components/ui/Button";
-import Stepper from "../../../components/ui/Stepper";
+import { Button } from "../../components/ui/Button";
+import Stepper from "../../components/ui/Stepper";
 import { useNavigation } from "@react-navigation/native";
-import { BackHeader } from "../../../components/ui/BackHeader";
+import { BackHeader } from "../../components/ui/BackHeader";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArrowRight } from "lucide-react-native";
 
-export default function ConfirmedRegisterPacient(props) {
-  const navigation = useNavigation();
+export default function ConfirmedRegisterPacient(props: any) {
+  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
   return (
     <View style={{ flex: 1, backgroundColor: "#fff", paddingTop: insets.top }}>
@@ -22,7 +22,7 @@ export default function ConfirmedRegisterPacient(props) {
          
           <View className="items-center justify-center w-full" style={{ backgroundColor: '#fff', borderRadius: 8, height: '65%', marginBottom: 24, paddingVertical: 8 }}>
             <Image
-              source={require("../../../assets/Confirm-Register-Pacient.png")}
+              source={require("../../assets/images/Confirm-Register-Pacient.png")}
               style={{ width: '100%', height: '100%', resizeMode: 'contain' }}
             />
           </View>

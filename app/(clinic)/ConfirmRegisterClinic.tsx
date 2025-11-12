@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text, Image, SafeAreaView, ScrollView } from "react-native";
-import { Button } from "../../../components/ui/Button";
-import Stepper from "../../../components/ui/Stepper";
+import { Button } from "../../components/ui/Button";
+import Stepper from "../../components/ui/Stepper";
 import { useNavigation } from "@react-navigation/native";
-import { BackHeader } from "../../../components/ui/BackHeader";
+import { BackHeader } from "../../components/ui/BackHeader";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export default function ConfirmedRegisterClinic(props) {
-  const navigation = useNavigation();
+export default function ConfirmedRegisterClinic(props: any) {
+  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -21,7 +21,7 @@ export default function ConfirmedRegisterClinic(props) {
          
           <View className="items-center justify-center w-full" style={{ backgroundColor: '#fff', borderRadius: 8, height: '65%', marginBottom: 24, paddingVertical: 8 }}>
             <Image
-              source={require("../../../assets/Confirm-Register-Clinic.png")}
+              source={require("../../assets/images/Confirm-Register-Clinic.png")}
               style={{ width: '100%', height: '100%', resizeMode: 'contain' }}
             />
           </View>

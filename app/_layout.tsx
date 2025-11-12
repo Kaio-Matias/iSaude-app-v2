@@ -5,9 +5,9 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function RootLayout() {
   return (
-    // GestureHandler é necessário para gestos de swipe e scroll
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Stack screenOptions={{ headerShown: false }}>
+        {/* Telas da Raiz */}
         <Stack.Screen name="index" />
         <Stack.Screen name="home" />
         <Stack.Screen name="RegisterScreen" />
@@ -18,7 +18,7 @@ export default function RootLayout() {
         <Stack.Screen name="Terms" />
         <Stack.Screen name="Polity" />
         
-        {/* Telas dos grupos de rotas */}
+        {/* Telas dos Grupos de Rotas */}
         <Stack.Screen name="(pacient)" />
         <Stack.Screen name="(professional)" />
         <Stack.Screen name="(clinic)" />

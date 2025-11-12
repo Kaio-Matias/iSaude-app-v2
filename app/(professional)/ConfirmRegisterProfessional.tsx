@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text, Image, SafeAreaView, ScrollView } from "react-native";
-import { Button } from "../../../components/ui/Button";
-import Stepper from "../../../components/ui/Stepper";
+import { Button } from "../../components/ui/Button";
+import Stepper from "../../components/ui/Stepper";
 import { useNavigation } from "@react-navigation/native";
-import { BackHeader } from "../../../components/ui/BackHeader";
+import { BackHeader } from "../../components/ui/BackHeader";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export default function ConfirmedRegisterProfessional(props) {
-  const navigation = useNavigation();
+export default function ConfirmedRegisterProfessional(props: any) {
+  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
   
   return (
@@ -22,7 +22,7 @@ export default function ConfirmedRegisterProfessional(props) {
          
           <View className="items-center justify-center w-full" style={{ backgroundColor: '#fff', borderRadius: 8, height: '65%', marginBottom: 24, paddingVertical: 8 }}>
             <Image
-              source={require("../../../assets/Confirm-Register-Professional.png")}
+              source={require("../../assets/images/Confirm-Register-Professional.png")}
               style={{ width: '100%', height: '100%', resizeMode: 'contain' }}
             />
           </View>

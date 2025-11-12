@@ -22,7 +22,7 @@ const SenhaAlteradaScreen = () => {
         </Text>
       </View>
       <Button
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.navigate('Home' as never)}
         className="bg-blue-500 w-full mt-8"
         style={{ marginBottom: insets.bottom + 16 }}
       >

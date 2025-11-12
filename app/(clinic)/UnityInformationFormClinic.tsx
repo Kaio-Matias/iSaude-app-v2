@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView, SafeAreaView, KeyboardAvoidingView, Platform } from "react-native";
-import { Feather, MaterialIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { BackHeader } from "../../../components/ui/BackHeader";
-import Stepper from "../../../components/ui/Stepper";
-import { Input } from "../../../components/ui/Input";
-import { Button } from "../../../components/ui/Button";
+import { BackHeader } from "../../components/ui/BackHeader";
+import Stepper from "../../components/ui/Stepper";
+import { Input } from "../../components/ui/Input";
+import { Button } from "../../components/ui/Button";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArrowRight } from "lucide-react-native";
 
-function formatarTelefone(valor) {
+function formatarTelefone(valor: string) {
   const numeros = valor.replace(/\D/g, "");
   if (numeros.length === 11) {
     return numeros.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
@@ -19,11 +19,11 @@ function formatarTelefone(valor) {
   return valor;
 }
 
-export default function UnityInformationFormClinic(props) {
-  const navigation = useNavigation();
+export default function UnityInformationFormClinic(props: any) {
+  const navigation = useNavigation<any>();
   const [email, setEmail] = useState("");
   const [telefones, setTelefones] = useState([""]);
-  const [inputFocused, setInputFocused] = useState({ email: false, telefone: null });
+  const [inputFocused, setInputFocused] = useState<{ email: boolean; telefone: number | null }>({ email: false, telefone: null });
   const insets = useSafeAreaInsets();
 
   const handleNext = () => {
@@ -31,7 +31,7 @@ export default function UnityInformationFormClinic(props) {
     navigation.navigate("PasswordInformationFormClinic");
   };
 
-  const handleTelefoneChange = (value, idx) => {
+  const handleTelefoneChange = (value: string, idx: number) => {
     let numeros = value.replace(/\D/g, "");
     if (numeros.length > 11) numeros = numeros.slice(0, 11);
     const novos = [...telefones];
@@ -39,7 +39,7 @@ export default function UnityInformationFormClinic(props) {
     setTelefones(novos);
   };
 
-  const handleTelefoneFocus = (idx) => {
+  const handleTelefoneFocus = (idx: number) => {
     setInputFocused({ ...inputFocused, telefone: idx });
   };
 
@@ -88,7 +88,6 @@ export default function UnityInformationFormClinic(props) {
               keyboardType="email-address"
               autoCapitalize="none"
               autoCorrect={false}
-              active={inputFocused.email}
             />
           </View>
           <View className="px-6 pt-2">
@@ -99,13 +98,12 @@ export default function UnityInformationFormClinic(props) {
                   <Input
                     placeholder="(00) 00000-0000"
                     value={formatarTelefone(telefone)}
-                    onChangeText={v => handleTelefoneChange(v, idx)}
+                    onChangeText={(v: string) => handleTelefoneChange(v, idx)}
                     icon={<Feather name="phone" size={16} color={inputFocused.telefone === idx ? '#2563eb' : '#9ca3af'} style={{ marginRight: 4 }} />}
                     className="text-base text-gray-800"
                     onFocus={() => handleTelefoneFocus(idx)}
                     onBlur={handleTelefoneBlur}
                     keyboardType="phone-pad"
-                    active={inputFocused.telefone === idx}
                   />
                 </View>
                 {telefones.length > 1 && (

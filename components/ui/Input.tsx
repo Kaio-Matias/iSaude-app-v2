@@ -3,7 +3,7 @@ import { View, TextInput, Text, TouchableOpacity, KeyboardTypeOptions, StyleProp
 import { Eye, EyeOff } from 'lucide-react-native';
 
 interface InputProps {
-  label: string;
+  label?: string;
   placeholder?: string;
   value: string;
   onChangeText: (text: string) => void;
@@ -16,6 +16,8 @@ interface InputProps {
   containerStyle?: StyleProp<ViewStyle>;
   onFocus?: () => void;
   onBlur?: () => void;
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
+  autoCorrect?: boolean;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -32,6 +34,8 @@ export const Input: React.FC<InputProps> = ({
   containerStyle = {},
   onFocus,
   onBlur,
+  autoCapitalize,
+  autoCorrect,
 }) => {
   const [show, setShow] = useState(!secureTextEntry);
   const [focused, setFocused] = useState(false);
@@ -97,6 +101,8 @@ export const Input: React.FC<InputProps> = ({
           ]}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          autoCapitalize={autoCapitalize}
+          autoCorrect={autoCorrect}
         />
         {secureTextEntry && (
           <TouchableOpacity onPress={() => setShow(!show)}>
