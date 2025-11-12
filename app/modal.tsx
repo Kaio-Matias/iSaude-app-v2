@@ -4,32 +4,76 @@ import { Platform, StyleSheet } from 'react-native';
 import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
 
-export default function ModalScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Modal</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/modal.tsx" />
+const DOTS = 4;
+const DOT_COLORS = [
+  "#FFF",
+  "#FFF",
+  "#FFF",
+  "#FFF"
+];
+const DOT_SIZE = 14;
 
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
-      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
+const SplashScreen = () => {
+  const navigation = useNavigation<NavigationProp>();
+  const anims = Array.from({ length: DOTS }).map(() => useRef(new Animated.Value(0)).current);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.navigate("Home");
+    }, 2000);
+    anims.forEach((anim, i) => {
+      const animate = () => {
+        Animated.loop(
+          Animated.sequence([
+            Animated.timing(anim, {
+              toValue: 1,
+              duration: 500,
+              useNativeDriver: true,
+            }),
+            Animated.timing(anim, {
+              toValue: 0,
+              duration: 500,
+              useNativeDriver: true,
+            }),
+          ])
+        ).start();
+      };
+      setTimeout(animate, i * 160);
+    });
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <View className="flex-1 bg-[#4576F2] justify-center items-center">
+      <Image
+        source={require("../assets/images/logo-text.png")}
+        style={{ width: '50%', height: 120 }}
+        resizeMode="contain"
+      />
+      <View style={{ flexDirection: "row", width: 100, height: 5, justifyContent: "center", alignItems: "center"}}>
+        {anims.map((anim, i) => (
+          <Animated.View
+            key={i}
+            style={{
+              width: DOT_SIZE,
+              height: DOT_SIZE,
+              borderRadius: DOT_SIZE / 2,
+              backgroundColor: DOT_COLORS[i],
+              marginHorizontal: 3,
+              transform: [
+                {
+                  translateY: anim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [-4, 4],
+                  }),
+                },
+              ],
+            }}
+          />
+        ))}
+      </View>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+export default SplashScreen; 
